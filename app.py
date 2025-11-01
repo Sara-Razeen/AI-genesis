@@ -96,27 +96,6 @@ qa_prompt = PromptTemplate(
 
 
 #=============== GEMINI LLM + CONVERSATION CHAIN ===============
-# def create_conversation_chain(vectorstore):
-    
-#     llm = ChatGoogleGenerativeAI(
-#         model="gemini-2.0-flash-exp",
-#         google_api_key=os.getenv("GOOGLE_API_KEY"),
-#         temperature=0.2,
-#         max_output_tokens=1024
-#     )
-
-#     memory = ConversationBufferMemory(
-#         memory_key="chat_history",
-#         return_messages=True
-#     )
-
-#     chain = ConversationalRetrievalChain.from_llm(
-#         llm=llm,
-#         retriever=vectorstore.as_retriever(search_type="similarity", search_kwargs={"k": 3}),
-#         memory=memory,
-#         verbose=True
-#     )
-#     return chain
 
 def create_conversation_chain(vectorstore):
     llm = ChatGoogleGenerativeAI(
