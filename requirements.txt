@@ -26,3 +26,10 @@ altair==4.2.2
 # Qdrant client
 qdrant-client==1.12.1
 
+# PDF processing
+pdfplumber==0.11.7
+PyMuPDF==1.26.5
+
+# Text splitting (LangChain utility)
+langchain-text-splitters==1.0.0
+
