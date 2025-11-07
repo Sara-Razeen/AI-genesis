@@ -73,7 +73,7 @@ def process_folder_to_single_file(folder_path: str, out_file: str = "cleaned_all
     print(f"\n All resumes cleaned & stored in: {out_file}")
 
 # Chunking using LangChain
-def chunk_resume(cleaned_text, chunk_size=10000, chunk_overlap=25):
+def chunk_resume(cleaned_text, chunk_size=475, chunk_overlap=25):
     splitter = RecursiveCharacterTextSplitter(
         chunk_size=chunk_size,
         chunk_overlap=chunk_overlap,#to avoid context loss
