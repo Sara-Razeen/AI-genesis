@@ -143,12 +143,32 @@ if __name__ == "__main__":
         chunks = chunk_resume(clean)
 
         for i, c in enumerate(chunks):
-            all_chunks.append({
-                "resume_id": resume_id,
-                "file_name": pdf.name,
-                "chunk_id": i + 1,
-                "text": c
-            })
+            # =================== START: FIX ===================
+            # 1. Filter out empty or whitespace-only chunks
+            if c and c.strip():
+                # 2. Structure the JSON to match what LangChain's
+                #    Document loader expects.
+                metadata = {
+                    "resume_id": resume_id,
+                    "file_name": pdf.name,
+                    "chunk_id": i + 1,
+                    "source": str(pdf.resolve()) # Add a source path
+                }
+                
+                all_chunks.append({
+                    # 3. CRITICAL: Change the key from "text" to "page_content"
+                    "page_content": c,
+                    "metadata": metadata
+                })
+            else:
+                print(f"  -> Skipping empty chunk {i+1} from {pdf.name}")
+            # ==================== END: FIX ====================
+            # all_chunks.append({
+            #     "resume_id": resume_id,
+            #     "file_name": pdf.name,
+            #     "chunk_id": i + 1,
+            #     "text": c
+            # })
 
     with open(args.json_out, "w", encoding="utf-8") as f:
         json.dump(all_chunks, f, indent=4, ensure_ascii=False)
