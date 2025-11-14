@@ -28,24 +28,24 @@ print(f"Resume embeddings generated for {len(resume_embeddings)} chunks and save
 print("Vector Length:", len(vector))
 
 # ========== 2️ Process Job Description Chunks ==========
-with open("job_description_chunks.json", "r", encoding="utf-8") as f:
-    jd_data = json.load(f)
+# with open("job_description_chunks.json", "r", encoding="utf-8") as f:
+#     jd_data = json.load(f)
 
-jd_embeddings = []
-for item in jd_data:
-    vector = model.encode(item["text"]).tolist()
+# jd_embeddings = []
+# for item in jd_data:
+#     vector = model.encode(item["text"]).tolist()
 
-    jd_embeddings.append({
-        "jd_chunk_id": item["jd_chunk_id"],
-        "text": item["text"],
-        "embedding": vector
-    })
+#     jd_embeddings.append({
+#         "jd_chunk_id": item["jd_chunk_id"],
+#         "text": item["text"],
+#         "embedding": vector
+#     })
 
-with open("jd_embeddings.json", "w", encoding="utf-8") as f:
-    json.dump(jd_embeddings, f, indent=4)
+# with open("jd_embeddings.json", "w", encoding="utf-8") as f:
+#     json.dump(jd_embeddings, f, indent=4)
 
-print(f"Job description embeddings generated for {len(jd_embeddings)} chunks and saved to jd_embeddings.json")
-print("Vector Length:", len(vector))
+# print(f"Job description embeddings generated for {len(jd_embeddings)} chunks and saved to jd_embeddings.json")
+# print("Vector Length:", len(vector))
 
 
 

@@ -1,0 +1,32 @@
+[
+    {
+        "resume_id": 1,
+        "file_name": "CV (1).pdf",
+        "chunk_id": 1,
+        "text": "FATHIMA RAIHAAN IHSAN UNDERGRADUATE SCHOLAR - SOFTWARE ENGINEERING raihaanihsan21001@gmail.com +92 3403392550 https://www.linkedin.com/in/raihaan-ihsan SUMMARY A driven Software Engineering undergraduate with a background in web development and a growing interest in research within Data Science and AI. Eager to engage in meaningful research projects, collaborate in a team-oriented setting, and promote continuous learning. TECHNICAL SKILLS SQL Python R Web Scraping React"
+    },
+    {
+        "resume_id": 1,
+        "file_name": "CV (1).pdf",
+        "chunk_id": 2,
+        "text": "R Web Scraping React Native Tableau (Beautiful Soup) WORK EXPERIENCE Idenfo Nov 2024- Jan 2025 AI/IDV Data collection Collected data for a project aimed at advancing AI capabilities in ID verification. Intern - Web Development May 2024- Aug 2024 Gao Tek Inc Worked on tasks relevant to WordPress such as WooCommerce, Contact Forms Intern - Web and Mobile Application Development Mar 2024- Sept 2024 NCAI -NEDUET Developed a full-stack mobile application for Complaint"
+    },
+    {
+        "resume_id": 1,
+        "file_name": "CV (1).pdf",
+        "chunk_id": 3,
+        "text": "for Complaint submission utilizing React Native, Expo, and Firebase Contributed to the Advanced Driver Monitoring System project, focusing on real time imageprocessing Contributed to the responsiveness of Crop2x Smart Agriculture project, ensuring seamless user interactions across various devices. EDUCATION 2022 - 2026 Bachelor of Engineering, Software Engineering NED University of Engineering and Technology, Pakistan Currently holding GPA - 3.582 PROJECTS HR CV"
+    },
+    {
+        "resume_id": 1,
+        "file_name": "CV (1).pdf",
+        "chunk_id": 4,
+        "text": "- 3.582 PROJECTS HR CV Screening Chatbot using LangChain, Qdrant database - Currently working Water Leakage Detection system using DCGAN and CNN - Currently working Brain Tumor Detection and Classification using MRI Scans Full Stack E-commerce Recipe Website, along with a chatbot integrating Gemini API Webscraping to collect doctor information from OlaDoc and Marham, with data analysis and visualization Full Stack E-commerce Web Application, with a comprehensive Admin"
+    },
+    {
+        "resume_id": 1,
+        "file_name": "CV (1).pdf",
+        "chunk_id": 5,
+        "text": "a comprehensive Admin Dashboard, using PHP and MySQL database Full Stack Online Donation Web Application, using PHP and MySQL database RESEARCH WORK Working on a systematic literature review on Software Requirements Prioritization CERTIFICATIONS Google Prompting Essentials Specialization - Coursera Aspire Leaders Program - Aspire Institute, Harvard Data Science Specialization - Google"
+    }
+]
