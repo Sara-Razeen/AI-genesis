@@ -98,8 +98,8 @@ if __name__ == "__main__":
     parser.add_argument("folder", help="Folder containing PDF resumes")
     parser.add_argument("--json_out", help="Output chunk JSON file", default="resume_chunks.json")
 
-    parser.add_argument("--job_file", help="Path to job description .txt file", default=None)
-    parser.add_argument("--job_out", help="Output chunk JSON for JD", default="job_description_chunks.json")
+    # parser.add_argument("--job_file", help="Path to job description .txt file", default=None)
+    # parser.add_argument("--job_out", help="Output chunk JSON for JD", default="job_description_chunks.json")
 
     args = parser.parse_args()
 
@@ -156,24 +156,24 @@ if __name__ == "__main__":
     print(f"Finished! Saved {len(all_chunks)} chunks to {args.json_out}")
 
     # --------- Process Job Description (if provided) ---------
-    if args.job_file:
-        print(f"\nProcessing Job Description File: {args.job_file}")
+    # if args.job_file:
+    #     print(f"\nProcessing Job Description File: {args.job_file}")
 
-        with open(args.job_file, "r", encoding="utf-8") as jf:
-            jd_text = jf.read()
+    #     with open(args.job_file, "r", encoding="utf-8") as jf:
+    #         jd_text = jf.read()
 
-        jd_clean = clean_text(jd_text)
-        jd_chunks = chunk_resume(jd_clean)
+    #     jd_clean = clean_text(jd_text)
+    #     jd_chunks = chunk_resume(jd_clean)
 
-        jd_chunk_data = [
-            {"jd_chunk_id": i + 1, "text": chunk}
-            for i, chunk in enumerate(jd_chunks)
-        ]
+    #     jd_chunk_data = [
+    #         {"jd_chunk_id": i + 1, "text": chunk}
+    #         for i, chunk in enumerate(jd_chunks)
+    #     ]
 
-        with open(args.job_out, "w", encoding="utf-8") as f:
-            json.dump(jd_chunk_data, f, indent=4, ensure_ascii=False)
+    #     with open(args.job_out, "w", encoding="utf-8") as f:
+    #         json.dump(jd_chunk_data, f, indent=4, ensure_ascii=False)
 
-        print(f"Job description chunked into {len(jd_chunks)} parts and saved to {args.job_out}")
+    #     print(f"Job description chunked into {len(jd_chunks)} parts and saved to {args.job_out}")
 
 
 
