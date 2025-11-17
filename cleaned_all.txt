@@ -10,3 +10,39 @@ RESUME ID: 2
 FILE NAME: maria_santos.pdf
 Maria Santos Phone: +55-21-8877-4455 Email: maria.analytics@gmail.com Location: São Paulo, Brazil Professional Summary Data Analyst with 5 years experience in BI, dashboards, forecasting and SQL analytics. Strong finance & sales domain. Skills Tools: PowerBI, Tableau, Excel Programming: Python (Pandas, NumPy), SQL Cloud: Azure Data Studio Experience Senior Data Analyst — FinGrowth (2022–Present) - Automated forecasting (+18% accuracy) - Executive dashboards Data Analyst — RetailHub (2019–2022) - Optimized SQL reporting (+45% speed) - Customer segmentation Education Economics — University of São Paulo (2018) Projects Sales forecasting automation Retail churn model
 
+
+
+RESUME ID: 3
+FILE NAME: rahul_sharma.pdf
+Rahul Sharma Phone: +91-75000-12345 Email: rahul.s.dev@gmail.com Location: Bangalore, India Professional Summary Full-stack engineer with 4 years’ experience building scalable web apps. Strong in React, Node.js, API engineering and cloud deployment. Skills Frontend: React, Next.js, Tailwind Backend: Node.js, Express, Django DB: MySQL, Firebase, Redis DevOps: AWS, Docker, GitHub CI/CD Experience Full-Stack Developer — CodeWave Technologies (2021–Present) - Built HR system used by 10k+ users - Chat app (WebSocket + Redis) - Improved performance by 30% Web Developer — PixelSoft Labs (2020–2021) - Built CMS for e-commerce Education B.Tech CSE — VTU (2020) Projects Portfolio builder SaaS AI code reviewer (OpenAI + FastAPI)
+
+
+
+RESUME ID: 4
+FILE NAME: Resume.pdf
+FATHIMA HAFSA +94 7765666401 (WhatsApp only)/ 03403392550 (Call) hafsafaizer401@gmail.com https://github.com/Hafsafyzr https://www.linkedin.com/ in/hafsa-faizer SUMMARY Enthusiastic final year Computer Engineering student looking to become a developer and acquire new programming languages. A fast learner, collaborative thinker, and organized person with a logical outlook. Self-motivated and centered around outcomes. I have a deep interest in cybersecurity, with a focus on learning about threat detection, risk management, and developing secure software systems. PROFESSIONAL EXPERIENCE NCAI March 2024 - July 2024 Full Stack Web Developer Intern Project: Advanced Driver Monitoring System Developed expertise in Firebase, fetching real-time images from the database. Designed and implemented logic to analyze database content and display information dynamically in a table format. GAO Tek Inc. (Remote) September 2024 - December 2024 WordPress Web Developer Intern Developed dynamic web pages using HTML, CSS, PHP, and JavaScript to enhance site functionality and user experience. Gained hands-on experience with WooCommerce, including implementing a mega menu to improve navigation on e-commerce pages. Utilized AJAX search techniques to display search results instantly, improving user engagement by minimizing page reloads. SKILLS Programming Languages: Proficient in C, Python; strong understanding of Object-Oriented Programming (OOP) and Data Structures & Algorithms (DSA). Operating Systems: Experienced in working with Linux environments. Frontend Development: Skilled in HTML, CSS, JavaScript, React.js, and Tailwind CSS. Mobile Development: Hands-on experience with React Native and Expo for cross-platform apps. Collaboration Tools: Strong communicator and effective team player with proven ability in remote task coordination. EDUCATION Bachelor of Computer and Information System Engineering: October 2022-present NED University of Engineering and Technology Diploma in IT: April 2021 - September 2021 ICBT Campus, Sri Lanka PROJECTS Environmental Monitoring System - Developed an integrated monitoring system in C (Linux environment) using the OpenWeatherMap API. Processed temperature and humidity data, calculated averages, logged events, and generated email alerts for anomalies. Provided real- time weather insights for anomaly detection and alerting. Complaint App - Developed a mobile application for emergency complaints using React Native (Expo). Designed the UI and integrated Firebase to log and store complaint data. Hospital Management System - Built an online platform to book doctor appointments at the cheapest available hospital. Implemented using React Native, Firebase, and Tailwind CSS. Movie Recommendation System - Created a recommender system using NLP (Bag of Words), ML, and cosine similarity to suggest similar movies. Integrated Streamlit for the interface and TMDb API to fetch posters, enhancing user engagement. Air Quality Monitoring System - Designed an IoT-based system to monitor temperature, humidity, and smoke levels in real time. Sent sensor data to the cloud for remote monitoring and visualization through a web dashboard. Simple LAN Chat Application -Built a real-time chat application in Python with text messaging, image sharing, and multi-client support. Enabled communication over a local area network (LAN) using socket programming. CERTIFICATIONS CC certified Cybersecurity (ISC2) Web Designing for Beginners - CODL University of Moratuwa Sri Lanka Python for Beginners - CODL University of Moratuwa Sri Lanka REFERENCES C. Eng. MOHAMED ISMATH B.Sc.(Eng.), P.G.Dip (Const. Mgt.), C.Eng., MIE(SL), MIPM(SL),GMICE(UK), SENIOR MANAGER (TECHNICAL )HEAD-MARINEDEVISION EL SEIF ENGINEERING, RIYADH, SAUDI ARABIA Email- a.ismath@el-seif.com.sa
+
+
+
+RESUME ID: 5
+FILE NAME: resume_1.pdf
+Alex Johnson alex.johnson@example.com +1 555 234 5678 Summary Motivated software engineer with experience in fullnstack development and cloud systems. Education B.Sc. Computer Science, Tech University (2019) Skills Python, JavaScript, React, Node.js, SQL, AWS Experience Software Developer at CloudSoft (2020nPresent) — Developed internal dashboards and automated CI/CD pipelines.
+
+
+
+RESUME ID: 6
+FILE NAME: resume_2.pdf
+Sofia Ahmed sofia.ahmed@example.com +971 52 345 6789 Summary Data analyst skilled in data cleaning, visualization, and statistical modeling. Education B.Sc. Data Science, Global Institute (2020) Skills Python, Pandas, NumPy, Power BI, Excel, SQL Experience Data Analyst at DataVision (2021nPresent) — Built dashboards and performed trend analysis for business insights.
+
+
+
+RESUME ID: 7
+FILE NAME: resume_3.pdf
+Ethan Carter ethan.carter@example.com +44 7700 900123 Summary AI engineer passionate about NLP and computer vision applications. Education M.Sc. Artificial Intelligence, UK Tech College (2022) Skills Python, TensorFlow, PyTorch, NLP, Computer Vision Experience AI Intern at VisionAI (2022n2024) — Trained models for text classification and image processing.
+
+
+
+RESUME ID: 8
+FILE NAME: resume_4.pdf
+Hina Perera hina.perera@example.com +94 71 123 4567 Summary Frontend developer experienced in building responsive and scalable user interfaces. Education B.Sc. Information Systems, Colombo University (2021) Skills HTML, CSS, JavaScript, Vue.js, Tailwind CSS Experience Frontend Engineer at WebCraft (2021nPresent) — Led UI redesign improving UX and performance.
+
