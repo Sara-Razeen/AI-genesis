@@ -1,8 +1,8 @@
 
 from typing import List
 import os
-import subprocess  # Added from model.py
-import shutil  # Added for managing temp folders
+import subprocess
+import shutil
 import streamlit as st
 from dotenv import load_dotenv, find_dotenv
 from typing import List
@@ -10,7 +10,6 @@ from PyPDF2 import PdfReader
 
 # ---------------- LangChain Imports ----------------
 from langchain_community.embeddings import HuggingFaceEmbeddings
-# from langchain_community.document_loaders import PyPDFLoader, DirectoryLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.schema import Document
 from langchain.memory import ConversationBufferMemory
@@ -126,10 +125,11 @@ qa_prompt = PromptTemplate(
 #=============== GEMINI LLM + CONVERSATION CHAIN ===============
 def create_conversation_chain(vectorstore):
     llm = ChatGoogleGenerativeAI(
-        model="gemini-2.0-flash-exp",
+        model="gemini-2.5-flash",
         google_api_key=os.getenv("GOOGLE_API_KEY"),
         temperature=0.2,
-        max_output_tokens=2048  # Increased for full responses
+        max_output_tokens=2048,
+        max_retries=1
     )
 
     memory = ConversationBufferMemory(
@@ -141,7 +141,7 @@ def create_conversation_chain(vectorstore):
         llm=llm,
         retriever=vectorstore.as_retriever(
             search_type="similarity",
-            search_kwargs={"k": 5}
+            search_kwargs={"k": 20}
         ),
         memory=memory,
         combine_docs_chain_kwargs={"prompt": qa_prompt},
@@ -156,16 +156,18 @@ def handle_user_query(user_question):
         return
 
     try:
-        response = st.session_state.conversation({"question": user_question})
-        st.session_state.chat_history = response["chat_history"]
-
-        # Display the full chat history
-        for i, msg in enumerate(st.session_state.chat_history):
-            template = user_template if i % 2 == 0 else bot_template
-            st.write(template.replace("{{MSG}}", msg.content), unsafe_allow_html=True)
+        with st.spinner("AI is thinking..."):
+            response = st.session_state.conversation({"question": user_question})
+            st.session_state.chat_history = response["chat_history"]
+        st.success("Response received!")
+        st.rerun()
 
     except Exception as e:
         st.error(f"Error: {str(e)}")
+        st.error("Make sure you have:")
+        st.error("1. Uploaded PDF documents")
+        st.error("2. Clicked 'Process Documents'")
+        st.error("3. Set up your environment variables (.env file)")
 
 def clear_chat():
     st.session_state.chat_history = []
@@ -173,12 +175,95 @@ def clear_chat():
         st.session_state.conversation.memory.clear()
     st.rerun()
 
-#=============== STREAMLIT MAIN APP (Corrected) ===============
+#=============== STREAMLIT CHAT INTERFACE ===============
+def render_chat_interface():
+    """Render chat interface using Streamlit components"""
+    
+    # Custom CSS for chat styling
+    st.markdown("""
+    <style>
+   
+    .user-message {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: #f8fafc;
+        padding: 1rem 1.5rem;
+        border-radius: 15px;
+        margin: 1rem 0;
+        margin-left: 3rem;
+    }
+    
+    .bot-message {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);        
+        color: #f8fafc;
+        border: 1px solid #e2e8f0;
+        padding: 1rem 1.5rem;
+        border-radius: 15px;
+        margin: 1rem 0;
+        margin-right: 3rem;
+    }
+
+    </style>
+    """, unsafe_allow_html=True)
+    
+    # Chat container
+    st.markdown('<div class="chat-container">', unsafe_allow_html=True)
+    
+    # Display chat history
+    if st.session_state.chat_history:
+        for i, msg in enumerate(st.session_state.chat_history):
+            if i % 2 == 0:  # User message
+                st.markdown(f'<div class="user-message">👤 You: {msg.content}</div>', unsafe_allow_html=True)
+            else:  # Bot message
+                st.markdown(f'<div class="bot-message"> AI: {msg.content}</div>', unsafe_allow_html=True)
+       
+    
+    st.markdown('</div>', unsafe_allow_html=True)
+
+#=============== STREAMLIT MAIN APP ===============
 def main():
-    st.set_page_config(page_title="Chat with PDFs (Gemini + Qdrant)", page_icon="💬", layout="wide")
-    st.write(css, unsafe_allow_html=True)
-    st.markdown(header_html, unsafe_allow_html=True)
-    st.markdown(stats_html, unsafe_allow_html=True)
+    st.set_page_config(
+        page_title="AI Resume Screening Assistant", 
+        # page_icon="", 
+        layout="wide",
+        initial_sidebar_state="expanded"
+    )
+    
+    # Custom styling
+    hide_streamlit_style = """
+    <style>
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
+    .stApp {
+    background: #475569 !important;  
+}
+    
+    .stTextInput > div > div > input {
+        border-radius: 40px !important;
+        border: 0px solid #e2e8f0 !important;
+        padding: 1rem !important;
+        font-size: 1rem !important;
+        background: transparent !important;
+    }
+    
+    .stButton > button {
+        background: #4b6eaf !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 12px !important;
+        padding: 0.4rem 1rem !important;
+        margin-top: 30px !important;
+        font-weight: 600 !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    .stButton > button:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4) !important;
+    }
+    </style>
+    """
+    st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
     # --- Initialize session state ---
     if "conversation" not in st.session_state:
@@ -186,44 +271,43 @@ def main():
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = []
 
-    # --- Header Section ---
+    # --- Header ---
     st.markdown("""
-        <div style="text-align:center; padding: 1rem 0;">
-            <h1 style="color:#3b82f6; font-family:'Poppins',sans-serif;">💬 Resume Screening Assistant</h1>
-            <p style="color:#94a3b8; font-size:0.95rem;">Chat with your uploaded resumes or PDFs, powered by Gemini + Qdrant</p>
-        </div>
+    <div style="text-align: center; padding: 2rem 0; margin-bottom: 2rem;">
+        <h1 style="color: white; font-size: 3rem; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">🤖 AI Resume Screening Assistant</h1>
+        <p style="color: #e2e8f0; font-size: 1.2rem;">Intelligent candidate analysis powered by Gemini AI & Qdrant Vector Search</p>
+    </div>
     """, unsafe_allow_html=True)
-
-    # --- Chat Display Window ---
-    st.markdown("<div class='chat-window'>", unsafe_allow_html=True)
-    if st.session_state.chat_history:
-        for i, msg in enumerate(st.session_state.chat_history):
-            template = user_template if i % 2 == 0 else bot_template
-            st.write(template.replace("{{MSG}}", msg.content), unsafe_allow_html=True)
-    st.markdown("</div>", unsafe_allow_html=True)
-
-    # --- Input Field & Send Button ---
-    st.markdown("""
-        <style>
-            /* ... [Your existing CSS styles] ... */
-        </style>
-    """, unsafe_allow_html=True)
-
-    col1, col2 = st.columns([5, 1])
+    
+    # --- Debug info ---
+    if st.session_state.conversation is not None:
+        st.sidebar.success("AI System Ready!")
+    else:
+        st.sidebar.warning("Please upload and process documents first")
+    
+    # --- Chat Interface ---
+    render_chat_interface()
+    
+    # --- Input Area ---
+    col1, col2, col3 = st.columns([7, 1.5, 1.5])
+    
     with col1:
-        user_question = st.text_input("Type your question here...")
+        user_question = st.text_area("Ask me anything about the resumes...",height=100 , key="user_input", placeholder="e.g., Who has Python experience?")
+    
     with col2:
-        if st.button("🚀 Send"):
-            if user_question:
-                handle_user_query(user_question)
+        send_clicked = st.button("Send")
+        if send_clicked and user_question.strip():
+            handle_user_query(user_question)
+    
+    with col3:
+        if st.button("Clear"):
+            clear_chat()
 
-    # --- Clear Chat Button ---
-    if st.button("🧹 Clear Chat", key="clear_chat"):
-        clear_chat()
+    
 
     # --- Sidebar: PDF Upload & Processing ---
     with st.sidebar:
-        st.subheader("📂 Upload Documents")
+        st.subheader("Upload Documents")
         
         pdf_docs = st.file_uploader(
             "Upload PDF resumes here", 
@@ -239,7 +323,7 @@ def main():
         # )
         # -----------------------------------------------
 
-        if st.button("⚙️ Process Documents"):
+        if st.button("Process Documents"):
             
             # --- Check if PDFs are uploaded ---
             if not pdf_docs: # Removed check for job_desc_file
@@ -270,12 +354,16 @@ def main():
                     # 5. Create the conversation chain
                     st.session_state.conversation = create_conversation_chain(vectorstore)
                     
-                    st.success("✅ Documents processed and loaded successfully. You can now chat!")
+                    st.success("Documents processed and loaded successfully. You can now chat!")
 
                 except Exception as e:
                     st.error(f"Error during processing: {str(e)}")
 
-        st.markdown(footer_html, unsafe_allow_html=True)
+        st.markdown("---")
+        st.markdown("Questions:")
+        st.markdown("1. Who has Python skills?")
+        st.markdown("2. List all candidates name?")
+        # st.markdown("- Try 'Show candidates with [skill]' for targeted search")
 
 # --- This must be at the end, with NO indentation ---
 if __name__ == "__main__":

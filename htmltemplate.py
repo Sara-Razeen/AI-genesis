@@ -1,250 +1,181 @@
-# css = '''
-# <style>
-# .chat-message {
-#     padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1rem; display: flex
-# }
-# .chat-message.user {
-#     background-color: #2b313e
-# }
-# .chat-message.bot {
-#     background-color: #475063
-# }
-# .chat-message .avatar {
-#   width: 20%;
-# }
-# .chat-message .avatar img {
-#   max-width: 78px;
-#   max-height: 78px;
-#   border-radius: 50%;
-#   object-fit: cover;
-# }
-# .chat-message .message {
-#   width: 80%;
-#   padding: 0 1.5rem;
-#   color: #fff;
-# }
-# '''
-
-# bot_template = '''
-# <div class="chat-message bot">
-#     <div class="avatar">
-#         <img src="https://i.ibb.co/cN0nmSj/Screenshot-2023-05-28-at-02-37-21.png" style="max-height: 78px; max-width: 78px; border-radius: 50%; object-fit: cover;">
-#     </div>
-#     <div class="message">{{MSG}}</div>
-# </div>
-# '''
-
-# user_template = '''
-# <div class="chat-message user">
-#     <div class="avatar">
-#         <img src="https://i.ibb.co/rdZC7LZ/Photo-logo-1.png">
-#     </div>    
-#     <div class="message">{{MSG}}</div>
-# </div>
-# '''
-
-# css = '''
-# <style>
-# .chat-message {
-#     padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1rem; display: flex
-# }
-# .chat-message.user {
-#     background-color: #2b313e
-# }
-# .chat-message.bot {
-#     background-color: #475063
-# }
-# .chat-message .avatar {
-#   width: 20%;
-# }
-# .chat-message .avatar img {
-#   max-width: 78px;
-#   max-height: 78px;
-#   border-radius: 50%;
-#   object-fit: cover;
-# }
-# .chat-message .message {
-#   width: 80%;
-#   padding: 0 1.5rem;
-#   color: #fff;
-# }
-# '''
-
-# bot_template = '''
-# <div class="chat-message bot">
-#     <div class="avatar">
-#         <img src="https://i.ibb.co/cN0nmSj/Screenshot-2023-05-28-at-02-37-21.png" style="max-height: 78px; max-width: 78px; border-radius: 50%; object-fit: cover;">
-#     </div>
-#     <div class="message">{{MSG}}</div>
-# </div>
-# '''
-
-# user_template = '''
-# <div class="chat-message user">
-#     <div class="avatar">
-#         <img src="https://i.ibb.co/rdZC7LZ/Photo-logo-1.png">
-#     </div>    
-#     <div class="message">{{MSG}}</div>
-# </div>
-# '''
+# Old templates - keeping for reference but not using
 css = '''
 <style>
-body {
-    background: linear-gradient(145deg, #f8faff, #eef2ff);
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* === GLOBAL STYLES === */
+* {
     font-family: 'Inter', sans-serif;
-    color: #1e293b;
 }
 
-/* === HEADER === */
+.stApp {
+    background: linear-gradient(135deg, #1e3a8a 0%, #1f2937 100%) !important;
+}
+
+# .main .block-container {
+#     padding-top: 1rem !important;
+#     max-width: 900px !important;
+#     background: transparent !important;
+# }
+
+
+/* Hide Streamlit branding */
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+
+/* === HEADER STYLES === */
 .header {
     text-align: center;
-    padding: 2rem 0 1rem 0;
+    padding: 2rem 0;
+    margin-bottom: 1rem;
 }
+
 .header h1 {
-    font-size: 2rem;
-    color: #2563eb;
-    margin-bottom: 0.4rem;
+    color: #ffffff;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
     font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
+
 .header p {
-    color: #64748b;
-    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+    font-weight: 300;
 }
 
-/* === DASHBOARD STATS === */
-.stats-container {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
-}
-.stat-card {
-    background: white;
-    border-radius: 12px;
-    padding: 1rem 1.5rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    width: 270px;
-    transition: 0.25s ease-in-out;
-    border: 1px solid #e2e8f0;
-}
-.stat-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 16px rgba(59,130,246,0.2);
-}
-.stat-card h3 {
-    color: #334155;
-    font-size: 1rem;
-    margin-bottom: 0.3rem;
-}
-.stat-card .value {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: #2563eb;
-}
-.stat-card .desc {
-    color: #10b981;
-    font-size: 0.85rem;
-    margin-top: 0.2rem;
-}
+/* Stats cards removed for cleaner design */
 
-/* === CHAT AREA === */
-.chat-container {
-    width: 90%;
-    max-width: 850px;
-    margin: 0 auto 3rem auto;
-}
+/* === CHAT STYLES === */
 .chat-message {
     display: flex;
     align-items: flex-start;
-    border-radius: 14px;
-    padding: 1rem 1.3rem;
-    margin-bottom: 1rem;
-    transition: 0.3s ease-in-out;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    gap: 1rem;
+    padding: 1.2rem;
+    margin: 1rem 0;
+    border-radius: 16px;
 }
+
 .chat-message.user {
-    background: #eff6ff;
-    border: 1px solid #93c5fd;
+    background: linear-gradient(135deg, #1e40af 0%, #1f2937 100%);
+    color: white;
+    margin-left: 2rem;
+    box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
 }
+
 .chat-message.bot {
-    background: #ffffff;
-    border: 1px solid #cbd5e1;
-}
-.chat-message .avatar {
-    width: 55px;
-    height: 55px;
+    background: rgba(255, 255, 255, 0.95);
+    color: #333;
+    margin-right: 2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}              
+
+.avatar {
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     overflow: hidden;
-    margin-right: 1.2rem;
+    flex-shrink: 0;
 }
-.chat-message .avatar img {
+
+.avatar img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-.chat-message .message {
-    flex-grow: 1;
-    color: #1e293b;
-    font-size: 0.95rem;
+
+.message {
+    flex: 1;
     line-height: 1.6;
 }
 
 /* === FOOTER === */
 .footer {
     text-align: center;
-    font-size: 0.85rem;
-    color: #94a3b8;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
     margin-top: 2rem;
-    padding-bottom: 1rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+}
+
+/* === STREAMLIT OVERRIDES === */
+.stButton > button {
+    background: linear-gradient(135deg, #1e40af 0%, #1f2937 100%) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 0.8rem 1.5rem !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+    width: 100% !important;
+}
+
+.stButton > button:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 15px rgba(30, 64, 175, 0.4) !important;
+}
+
+.stTextInput > div > div > input {
+    border-radius: 8px !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    padding: 1rem !important;
+}
+
+.stTextInput > div > div > input:focus {
+    border-color: #1e40af !important;
+    box-shadow: 0 0 0 2px rgba(30, 64, 175, 0.2) !important;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 2rem;
+    }
+    
+    .stats-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .chat-message {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
 }
 </style>
 '''
 
 header_html = '''
 <div class="header">
-    <h1>💼 Resume Screening Assistant</h1>
-    <p>Chat with your uploaded resumes or PDFs — powered by Gemini + Qdrant</p>
+    <h1> AI Resume Screening Assistant</h1>
+    <p>Intelligent candidate analysis powered by Gemini AI & Qdrant Vector Search</p>
 </div>
 '''
 
-stats_html = '''
-<div class="stats-container">
-    <div class="stat-card">
-        <h3>Total Resumes</h3>
-        <div class="value">0</div>
-        <div class="desc">+0% from last week</div>
-    </div>
-    <div class="stat-card">
-        <h3>Candidates Screened</h3>
-        <div class="value">0</div>
-        <div class="desc">Ready to review</div>
-    </div>
-    <div class="stat-card">
-        <h3>Match Rate</h3>
-        <div class="value">0%</div>
-        <div class="desc">Avg. qualification score</div>
-    </div>
-</div>
-'''
+stats_html = '''<!-- Stats removed for cleaner design -->'''
 
 bot_template = '''
-<div class="chat-container">
-  <div class="chat-message bot">
-    <div class="avatar">
-      <img src="https://cdn-icons-png.flaticon.com/512/4712/4712101.png" alt="Bot Avatar">
-    </div>
-    <div class="message">{{MSG}}</div>
+<div class="chat-message bot">
+  <div class="avatar">
+    <img src="https://cdn-icons-png.flaticon.com/512/4712/4712101.png" alt="AI Assistant">
+  </div>
+  <div class="message">
+    {{MSG}}
   </div>
 </div>
 '''
 
 user_template = '''
-<div class="chat-container">
-  <div class="chat-message user">
-    <div class="avatar">
-      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="User Avatar">
-    </div>
-    <div class="message">{{MSG}}</div>
+<div class="chat-message user">
+  <div class="avatar">
+    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="You">
+  </div>
+  <div class="message">
+    {{MSG}}
   </div>
 </div>
 '''
